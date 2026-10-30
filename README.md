@@ -44,6 +44,6 @@ Ollie is the "Ask Ollie" chat button on every page. It answers questions from th
 
 **Run locally:** run `npm install`, then put `GROQ_API_KEY=gsk_...` in the `.env` file (get a key at https://console.groq.com/keys), then run `npm run dev` and open http://localhost:8080.
 
-**Deploy:** in Vercel, add `GROQ_API_KEY` under Project → Settings → Environment Variables. Deploy `api/` and `package.json` along with the site files.
+**Deploy:** connect the GitHub repository in Vercel with Framework Preset "Other" and no build command. Vercel serves the committed pages from the project root and runs `api/chat.js` as a serverless function. Add `GROQ_API_KEY` under Project → Settings → Environment Variables. Run `node _build/build.js` (or `npm run build:site`) and commit the result before pushing whenever page content changes. `.vercelignore` keeps `_build/` and the local dev server off the live site.
 
 **Knowledge-base limit:** Ollie only knows what is on this website. To let it answer in more detail about Harm-Free Emporium or the Environmental Education Group, add their content to the site pages, or extend `_build/kb.js` to include their pages.
