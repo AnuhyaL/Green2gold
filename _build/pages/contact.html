@@ -1,0 +1,93 @@
+<!--{"title": "Contact", "description": "Contact Green2Gold: general, partnership, program and membership inquiries. Phone 805.735.7261, alan@green2gold.org, Lahaina, HI.", "nav": "contact"}-->
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a> » Contact</div>
+    <h1>Contact Green2Gold</h1>
+    <p>Questions? Call us anytime at <a href="tel:8057357261" style="color:var(--gold-100)">805.735.7261</a>, or send us a message.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container split wide-left" style="align-items:start">
+    <div class="card">
+      <h2>Send Us An Email</h2>
+      <form class="form" data-mailto="alan@green2gold.org" data-subject="Green2Gold website inquiry">
+        <div class="row">
+          <div><label for="first">First name *</label><input id="first" name="first name" required></div>
+          <div><label for="last">Last name *</label><input id="last" name="last name" required></div>
+        </div>
+        <div class="row">
+          <div><label for="company">Company</label><input id="company" name="company"></div>
+          <div><label for="phone">Phone</label><input id="phone" name="phone" type="tel"></div>
+        </div>
+        <div class="row">
+          <div><label for="city">City &amp; State/Province</label><input id="city" name="city"></div>
+          <div><label for="email">Email *</label><input id="email" name="email" type="email" required></div>
+        </div>
+        <div>
+          <label for="interest">Primary Interest</label>
+          <select id="interest" name="interest">
+            <option>General Inquiry</option>
+            <option>Membership</option>
+            <option>Programs &amp; Pathways</option>
+            <option>Partnership &amp; Collaboration</option>
+            <option>Sponsoring G2G</option>
+            <option>Licencing G2G Products</option>
+            <option>Volunteering</option>
+            <option>Staying In Touch</option>
+          </select>
+        </div>
+        <div><label for="message">Comment or Message *</label><textarea id="message" name="message" required></textarea></div>
+        <button class="btn btn-green" type="submit" style="justify-self:start">Submit</button>
+        <p style="font-size:.88rem;color:var(--muted);margin:0">Submitting opens your email app with your message addressed to alan@green2gold.org.</p>
+      </form>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:20px">
+        <h3>Contact Info</h3>
+        <p><strong>Mailing address</strong><br><a href="{{MAP_URL}}" {{EXT}}>Green2Gold, 5095 Napilihau St 109b 383, Lahaina, HI 96761</a></p>
+        <p><strong>Phone</strong><br><a href="tel:8057357261">805.735.7261</a></p>
+        <p><strong>Email</strong><br><a href="mailto:alan@green2gold.org">alan@green2gold.org</a></p>
+      </div>
+      <div class="card" style="margin-bottom:20px">
+        <h3>Inquiries</h3>
+        <ul style="padding-left:1.1em;margin:0">
+          <li><a href="#" data-interest="General Inquiry">General inquiries</a></li>
+          <li><a href="#" data-interest="Partnership &amp; Collaboration">Partnership &amp; collaboration</a></li>
+          <li><a href="#" data-interest="Membership">Program &amp; membership</a></li>
+          <li><a href="programs.html#compare">Compare pathways</a></li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom:20px">
+        <h3>Social Networks</h3>
+        <ul style="padding-left:1.1em;margin:0">
+          <li><a href="https://www.facebook.com/GOGREEN2GOLD/?ref=aymt_homepage_panel" {{EXT}}>Facebook</a></li>
+          <li><a href="https://twitter.com/GOGREEN2GOLD" {{EXT}}>Twitter</a></li>
+          <li><a href="https://www.linkedin.com/in/alan-tratner-1848a12" {{EXT}}>LinkedIn</a></li>
+          <li><a href="https://www.youtube.com/channel/UCCOxHf89Bd1WFrh7qAF0TWg" {{EXT}}>YouTube</a></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Newsletter signup</h3>
+        <form class="form" data-mailto="alan@green2gold.org" data-subject="Newsletter signup">
+          <input type="email" name="email" placeholder="Your email address" required aria-label="Email address">
+          <input type="hidden" name="interest" value="Staying In Touch">
+          <button class="btn btn-gold" type="submit" style="justify-self:start">Subscribe</button>
+        </form>
+        <p style="margin:14px 0 0;font-size:.9rem"><a href="privacy-policy.html">Privacy Policy</a> · <a href="terms-of-use.html">Terms of Use</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  // Preselect the inquiry type from ?interest=… or the quick links
+  (function () {
+    var sel = document.getElementById('interest');
+    var pick = function (v) { for (var i = 0; i < sel.options.length; i++) if (sel.options[i].text === v) sel.selectedIndex = i; };
+    var q = new URLSearchParams(location.search).get('interest');
+    if (q) pick(q);
+    document.querySelectorAll('[data-interest]').forEach(function (a) {
+      a.addEventListener('click', function (e) { e.preventDefault(); pick(a.dataset.interest); document.getElementById('first').focus(); });
+    });
+  })();
+</script>

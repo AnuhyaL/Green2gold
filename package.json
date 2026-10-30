@@ -1,0 +1,11 @@
+{
+  "name": "green2gold-site",
+  "private": true,
+  "scripts": {
+    "build": "node _build/build.js",
+    "dev": "node --env-file-if-exists=.env dev-server.js"
+  },
+  "dependencies": {
+    "groq-sdk": "^1.6.0"
+  }
+}
