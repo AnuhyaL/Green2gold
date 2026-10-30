@@ -40,6 +40,8 @@ const initiatives = [
 const navItems = [
   ['home', 'Home', 'index.html'],
   ['about', 'About', 'about.html'],
+  ['eeg', 'EEG', EEG_URL, null, true],
+  ['hfe', 'Harm-Free Emporium', HFE_URL, null, true],
   ['programs', 'Programs & Pathways', 'programs.html'],
   ['initiatives', 'Our Initiatives', 'initiatives.html', initiatives],
   ['resources', 'Research & Resources', 'resources.html'],
@@ -52,9 +54,9 @@ const navItems = [
 const extAttrs = 'target="_blank" rel="noopener"';
 
 function nav(active) {
-  const li = navItems.map(([key, label, href, sub]) => {
+  const li = navItems.map(([key, label, href, sub, ext]) => {
     const cur = key === active ? ' aria-current="page"' : '';
-    const cls = key === 'involved' ? ' class="cta-link"' : '';
+    const cls = key === 'involved' ? ' class="cta-link"' : ext ? ` class="ext" ${extAttrs}` : '';
     if (!sub) return `<li><a href="${href}"${cur}${cls}>${label}</a></li>`;
     const subLi = [`<li><a href="${href}">All initiatives</a></li>`]
       .concat(sub.map(([l, h, ext]) => `<li><a href="${h}"${ext ? ` class="ext" ${extAttrs}` : ''}>${l}</a></li>`))
