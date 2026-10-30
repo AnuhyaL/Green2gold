@@ -183,4 +183,19 @@ for (const file of fs.readdirSync(PAGES).filter(f => f.endsWith('.html'))) {
 console.log(`Built ${count} pages.`);
 
 // Knowledge base for Ollie, the site chatbot (api/chat.js)
-console.log(`Knowledge base: ${buildKb(ROOT, built, path.join(ROOT, 'api', '_kb.json'))} chunks.`);
+// The contact details and initiative links live in the shared header/footer, which the
+// page chunker skips, so they are added as their own section.
+const siteFacts = {
+  source: 'Green2Gold — Contact details and key facts',
+  url: 'contact.html',
+  text: [
+    'Green2Gold is a 501(c)(3) nonprofit impact incubator since 1970.',
+    `Address: Green2Gold, 5095 Napilihau St 109b 383, Lahaina, HI 96761 (map: ${MAP_URL})`,
+    `Phone: ${PHONE}`,
+    `Email: ${EMAIL}`,
+    'Contact form: contact.html',
+    'Social media: ' + social.map(([l, h]) => `${l} (${h})`).join(', '),
+    'Initiatives: ' + initiatives.map(([l, h]) => `${l} (${h})`).join(', '),
+  ].join('\n'),
+};
+console.log(`Knowledge base: ${buildKb(ROOT, built, path.join(ROOT, 'api', '_kb.json'), [siteFacts])} chunks.`);

@@ -9,9 +9,33 @@ const MAX_CHARS = 1500;
 
 const ENTITIES = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ', rsquo: '’', lsquo: '‘', rdquo: '”', ldquo: '“', mdash: '—', ndash: '–', hellip: '…', middot: '·' };
 
+const cellText = html => toText(html).replace(/\n/g, ' ');
+
+// A comparison table flattened to text loses which value belongs to which column, so
+// rewrite it as one line per column: "<column>: Price: $500. Includes: …. Not included: …".
+function tableToText(table) {
+  const rows = [...table.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/gi)]
+    .map(r => [...r[1].matchAll(/<t[hd][^>]*>([\s\S]*?)<\/t[hd]>/gi)].map(c => cellText(c[1])));
+  if (rows.length < 2) return table;
+  const [head, ...body] = rows;
+  const lines = head.slice(1).map((col, j) => {
+    const yes = [], no = [], other = [];
+    for (const row of body) {
+      const v = (row[j + 1] || '').trim();
+      if (v === '✓') yes.push(row[0]);
+      else if (v === '–' || v === '-' || v === '') no.push(row[0]);
+      else other.push(`${row[0]}: ${v}`);
+    }
+    return `${col}: ${other.map(o => o + '.').join(' ')} Includes: ${yes.join(', ') || 'none listed'}.` +
+      (no.length ? ` Not included: ${no.join(', ')}.` : '');
+  });
+  return '<p>' + lines.join('</p><p>') + '</p>';
+}
+
 function toText(html) {
   return html
     .replace(/<(script|style|svg)[\s\S]*?<\/\1>/gi, ' ')
+    .replace(/<table[\s\S]*?<\/table>/gi, tableToText)
     .replace(/<a\s[^>]*href="(https?:[^"]+)"[^>]*>([\s\S]*?)<\/a>/gi, '$2 ($1)')
     .replace(/<\/(p|li|h\d|summary|div|tr)>|<br\s*\/?>/gi, '\n')
     .replace(/<[^>]+>/g, ' ')
@@ -60,8 +84,9 @@ function chunkPage(file, html) {
   return chunks;
 }
 
-function buildKb(root, files, outFile) {
-  const chunks = files.flatMap(f => chunkPage(f, fs.readFileSync(path.join(root, f), 'utf8')));
+// extra: hand-written chunks for facts that only appear in the shared header/footer.
+function buildKb(root, files, outFile, extra = []) {
+  const chunks = extra.concat(files.flatMap(f => chunkPage(f, fs.readFileSync(path.join(root, f), 'utf8'))));
   fs.mkdirSync(path.dirname(outFile), { recursive: true });
   fs.writeFileSync(outFile, JSON.stringify(chunks));
   return chunks.length;

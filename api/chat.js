@@ -37,7 +37,8 @@ function withRetrieval(msgs) {
   const docs = found.length
     ? found.map(d => `<document source="${escapeAttr(d.source)}" url="${escapeAttr(d.url)}">\n${d.text}\n</document>`).join('\n')
     : '(No matching sections were found in the knowledge base.)';
-  const reminder = 'Answer only with facts stated in these documents. Do not add steps, emails, logins, approvals, dates, prices or other details they do not state; if something is not covered, say so.';
+  const reminder = 'Answer only with facts stated in these documents. Do not add steps, emails, logins, approvals, dates, prices or other details they do not state; if something is not covered, say so. ' +
+    'Items listed next to each other are separate unless a document says one includes the other, and a name that is only listed, not described, should be presented as listed, with a note that the website does not describe it further.';
   const last = { role: 'user', content: `<retrieved_documents>\n${docs}\n</retrieved_documents>\n\n${reminder}\n\nVisitor's message:\n${question}` };
   return [...msgs.slice(0, -1), last];
 }
