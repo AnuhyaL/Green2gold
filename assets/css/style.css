@@ -54,7 +54,7 @@ p { margin: 0 0 1em; }
 .site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 76px; }
 .logo img { height: 52px; width: auto; }
 .nav-toggle { display: none; background: none; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font-size: 1rem; cursor: pointer; color: var(--green-900); }
-.main-nav > ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 2px; align-items: center; }
+.main-nav > ul { list-style: none; margin: 0; padding: 6px 0; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 2px; align-items: center; }
 .main-nav a { display: block; padding: 9px 8px; text-decoration: none; color: var(--green-900); font-weight: 600; font-size: .92rem; border-radius: 8px; white-space: nowrap; }
 .grid > *, .split > *, .hero-grid > * { min-width: 0; }
 .main-nav a:hover, .main-nav a[aria-current="page"] { background: var(--green-100); color: var(--green-800); }
@@ -273,3 +273,21 @@ form.form { display: grid; gap: 14px; }
 .ollie-note { margin: 0; padding: 0 12px 10px; font-size: .74rem; color: var(--muted); background: var(--white); }
 @media (max-width: 480px) { .ollie { right: 12px; bottom: 12px; } }
 @media (prefers-reduced-motion: reduce) { .ollie-typing span { animation: none; } }
+
+/* Super Green Live 2027 banner */
+.sgl-banner { position: relative; overflow: hidden; background: linear-gradient(120deg, var(--green-900), var(--green-700) 55%, var(--green-800)); color: var(--white); padding: 36px 0; text-align: center; }
+.sgl-banner::before { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgba(201, 162, 39, .28) 50%, transparent 70%); transform: translateX(-100%); animation: sgl-sweep 4.5s ease-in-out infinite; }
+.sgl-inner { position: relative; }
+.sgl-banner h2 { color: var(--white); font-size: clamp(2rem, 5vw, 3.2rem); margin: .25em 0; }
+.sgl-year { color: var(--gold-500); display: inline-block; animation: sgl-pop 2.4s ease-in-out infinite; }
+.sgl-banner p { color: #dbe6de; max-width: 640px; margin: 0 auto; }
+.sgl-banner a { color: var(--gold-500); }
+.sgl-live { display: inline-flex; align-items: center; gap: 8px; background: var(--gold-500); color: var(--green-900); font-weight: 700; font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; padding: 6px 14px; border-radius: 999px; }
+.sgl-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--green-900); animation: sgl-pulse 1.4s ease-out infinite; }
+@keyframes sgl-sweep { 60%, 100% { transform: translateX(100%); } }
+@keyframes sgl-pop { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes sgl-pulse { 0% { box-shadow: 0 0 0 0 rgba(28, 48, 39, .6); } 100% { box-shadow: 0 0 0 10px rgba(28, 48, 39, 0); } }
+@media (prefers-reduced-motion: reduce) { .sgl-banner::before, .sgl-year, .sgl-dot { animation: none; } }
+
+/* Funding Fridays */
+.ff-flyer { border-radius: var(--radius); box-shadow: var(--shadow); width: 100%; height: auto; }

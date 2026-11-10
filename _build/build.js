@@ -15,6 +15,7 @@ const EEG_URL = 'https://environmental-education-group.vercel.app/';
 const HFE_URL = 'https://harm-free-emporium.vercel.app/';
 const PHONE = '805.735.7261';
 const EMAIL = 'alan@green2gold.org';
+const EMAIL2 = 'alantratner@gmail.com';
 const MAP_URL = 'https://www.google.com/maps/place/6095+Napilihau+St+109b+383,+Lahaina,+HI+96761/@20.9854504,-156.6689734,17z/data=!3m1!4b1!4m5!3m4!1s0x7eaad454b8b1f777:0x71135ce4fd9b2f61!8m2!3d20.9854504!4d-156.6663985';
 
 // Links on the original site that now 404 (or pointed at old WordPress paths) -> new homes
@@ -26,7 +27,7 @@ const LINK_FIXES = [
 ];
 
 const initiatives = [
-  ['Environmental Education Group (EEG)', EEG_URL, true],
+  ['Environmental Education Group', EEG_URL, true],
   ['Harm-Free Emporium', HFE_URL, true],
   ['Regen Global Alliance', 'initiative-regen-global.html'],
   ['Regenerative Media', 'initiative-regenerative-media.html'],
@@ -40,8 +41,9 @@ const initiatives = [
 const navItems = [
   ['home', 'Home', 'index.html'],
   ['about', 'About', 'about.html'],
-  ['eeg', 'EEG', EEG_URL, null, true],
+  ['eeg', 'Environmental Education Group', EEG_URL, null, true],
   ['hfe', 'Harm-Free Emporium', HFE_URL, null, true],
+  ['funding', 'Funding Fridays', 'funding-fridays.html'],
   ['programs', 'Programs & Pathways', 'programs.html'],
   ['initiatives', 'Our Initiatives', 'initiatives.html', initiatives],
   ['resources', 'Research & Resources', 'resources.html'],
@@ -144,6 +146,7 @@ ${body}
         <li><a href="${MAP_URL}" ${extAttrs}>Green2Gold, 5095 Napilihau St 109b 383, Lahaina, HI 96761</a></li>
         <li><a href="tel:8057357261">${PHONE}</a></li>
         <li><a href="mailto:${EMAIL}">${EMAIL}</a></li>
+        <li><a href="mailto:${EMAIL2}">${EMAIL2}</a></li>
         <li><a href="contact.html">Contact form</a></li>
       </ul>
     </div>
@@ -194,7 +197,7 @@ const siteFacts = {
     'Green2Gold is a 501(c)(3) nonprofit impact incubator since 1970.',
     `Address: Green2Gold, 5095 Napilihau St 109b 383, Lahaina, HI 96761 (map: ${MAP_URL})`,
     `Phone: ${PHONE}`,
-    `Email: ${EMAIL}`,
+    `Email: ${EMAIL} or ${EMAIL2}`,
     'Contact form: contact.html',
     'Social media: ' + social.map(([l, h]) => `${l} (${h})`).join(', '),
     'Initiatives: ' + initiatives.map(([l, h]) => `${l} (${h})`).join(', '),
