@@ -152,7 +152,7 @@ ${body}
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© ${new Date().getFullYear()} GREEN2GOLD. All Rights Reserved.</span>
+    <span>© 2027 GREEN2GOLD. All Rights Reserved.</span>
     <span><a href="privacy-policy.html">Privacy Policy</a> · <a href="terms-of-use.html">Terms of Use</a></span>
   </div>
 </div></footer>
