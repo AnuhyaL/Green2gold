@@ -60,6 +60,9 @@ p { margin: 0 0 1em; }
 .main-nav a:hover, .main-nav a[aria-current="page"] { background: var(--green-100); color: var(--green-800); }
 .main-nav .cta-link { background: var(--gold-500); color: var(--green-900); }
 .main-nav .cta-link:hover { background: var(--gold-600); color: var(--white); }
+.main-nav .nav-directory { background: var(--green-800); color: var(--white); box-shadow: inset 0 0 0 2px var(--gold-500); transition: background .2s, color .2s, transform .2s; }
+.main-nav .nav-directory:hover { background: var(--green-900); color: var(--gold-500); transform: translateY(-1px); }
+.main-nav a:focus-visible, .btn:focus-visible { outline: 3px solid var(--gold-500); outline-offset: 2px; }
 .has-sub { position: relative; }
 .has-sub > ul { display: none; position: absolute; top: 100%; left: 0; background: var(--white); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); list-style: none; margin: 0; padding: 8px; min-width: 290px; }
 .has-sub:hover > ul, .has-sub:focus-within > ul { display: block; }
@@ -72,6 +75,7 @@ p { margin: 0 0 1em; }
   .main-nav.open { display: block; }
   .main-nav > ul { flex-direction: column; align-items: stretch; padding: 10px 16px; }
   .has-sub > ul { display: block; position: static; box-shadow: none; border: 0; padding: 0 0 0 14px; min-width: 0; }
+  .main-nav .nav-directory { white-space: normal; margin: 4px 0; text-align: center; }
 }
 
 /* Hero */
@@ -96,6 +100,10 @@ p { margin: 0 0 1em; }
 .btn-green { background: var(--green-800); color: var(--white); }
 .btn-green:hover { background: var(--green-900); color: var(--white); }
 .btn-outline { border-color: currentColor; color: var(--green-800); }
+.btn-directory { background: var(--gold-500); color: var(--green-900); box-shadow: var(--shadow); transition: background .2s, color .2s, transform .2s, box-shadow .2s; }
+.btn-directory:hover { background: var(--gold-600); color: var(--white); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(28, 48, 39, .18); }
+@media (max-width: 480px) { .btn-directory { display: block; text-align: center; } }
+@media (prefers-reduced-motion: reduce) { .main-nav .nav-directory, .btn-directory { transition: none; transform: none !important; } }
 .hero .btn-outline, .page-hero .btn-outline, .band-dark .btn-outline { color: var(--white); }
 .btn-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
 

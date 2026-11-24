@@ -13,7 +13,9 @@ const content = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'content
 
 const EEG_URL = 'https://environmental-education-group.vercel.app/';
 const HFE_URL = 'https://harm-free-emporium.vercel.app/';
-const PHONE = '805.735.7261';
+const REGEN_DIRECTORY_LABEL = 'Regen Global Resources Directory ’27';
+const REGEN_DIRECTORY_URL = 'initiative-regen-global.html#directory';
+const PHONE ='805.735.7261';
 const EMAIL = 'alan@green2gold.org';
 const EMAIL2 = 'alantratner@gmail.com';
 const MAP_URL = 'https://www.google.com/maps/place/6095+Napilihau+St+109b+383,+Lahaina,+HI+96761/@20.9854504,-156.6689734,17z/data=!3m1!4b1!4m5!3m4!1s0x7eaad454b8b1f777:0x71135ce4fd9b2f61!8m2!3d20.9854504!4d-156.6663985';
@@ -47,6 +49,7 @@ const navItems = [
   ['programs', 'Programs & Pathways', 'programs.html'],
   ['initiatives', 'Our Initiatives', 'initiatives.html', initiatives],
   ['resources', 'Research & Resources', 'resources.html'],
+  ['directory', REGEN_DIRECTORY_LABEL, REGEN_DIRECTORY_URL],
   ['media', 'Media & Stories', 'media.html'],
   ['impact', 'Impact & Community', 'impact.html'],
   ['involved', 'Get Involved', 'get-involved.html'],
@@ -58,7 +61,7 @@ const extAttrs = 'target="_blank" rel="noopener"';
 function nav(active) {
   const li = navItems.map(([key, label, href, sub, ext]) => {
     const cur = key === active ? ' aria-current="page"' : '';
-    const cls = key === 'involved' ? ' class="cta-link"' : ext ? ` class="ext" ${extAttrs}` : '';
+    const cls = key === 'involved' ? ' class="cta-link"' : key === 'directory' ? ' class="nav-directory"' : ext ? ` class="ext" ${extAttrs}` : '';
     if (!sub) return `<li><a href="${href}"${cur}${cls}>${label}</a></li>`;
     const subLi = [`<li><a href="${href}">All initiatives</a></li>`]
       .concat(sub.map(([l, h, ext]) => `<li><a href="${h}"${ext ? ` class="ext" ${extAttrs}` : ''}>${l}</a></li>`))
