@@ -32,7 +32,7 @@ This writes the final HTML files to the project root. Deploy the root folder (wi
 
 - PDFs are still linked from `green2gold.org/wp-content/uploads/…`. Copy them into `assets/` before the old WordPress site is shut down.
 - The contact and newsletter forms open the visitor's email app, because the site has no backend. To collect submissions directly, connect a form service such as Formspree.
-- Pages marked `TODO` need content from Green2Gold: the GreenTech Micro-Manufacturing Hub details and the YouTube ID for video Episode 2.
+- Pages marked `TODO` need content from Green2Gold: the GreenTech Micro-Manufacturing Hub details.
 
 ## Ollie chat assistant
 
